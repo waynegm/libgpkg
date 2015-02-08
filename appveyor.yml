@@ -1,20 +1,24 @@
 version: 1.0.{build}
 
-clone_folder: c:\projects\libgpkg
+clone_folder: C:\projects\libgpkg
 
 platform: x64
 
-before_build:
+install:
+  - choco install doxygen.portable
   # get a recent version of cmake
-  - mkdir c:\cmake
-  - cd c:\cmake
+  - mkdir C:\cmake
+  - cd C:\cmake
   - ps: Start-FileDownload 'http://www.cmake.org/files/v3.0/cmake-3.0.2-win32-x86.zip'
   - 7z x "cmake-3.0.2-win32-x86.zip" > nul
-  - cd c:\projects\libgpkg
+  - SET PATH=C:\cmake\cmake-3.0.2-win32-x86\bin;C:\Ruby193\bin;%PATH%
+
+before_build:
+  - cd C:\projects\libgpkg
   - 'call "C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\vcvarsx86_amd64.bat"'
-  - c:\cmake\cmake-3.0.2-win32-x86\bin\cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE:STRING=Release
-  - dir
+  - cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE:STRING=Release -DGPKG_GEOS:BOOL=on -DGPKG_TEST:BOOL=on -DGPKG_COVERAGE:BOOL=on
 
 build_script:
-  - cd c:\projects\libgpkg
+  - cd C:\projects\libgpkg
   - nmake
+  - ctest --output-on-failure
