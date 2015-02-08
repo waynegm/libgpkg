@@ -24,4 +24,4 @@ before_build:
 
 build_script:
   - cd c:\projects\libgpkg
-  - msbuild
+  - msbuild libgpkg.sln
