@@ -12,6 +12,8 @@ install:
   - ps: Start-FileDownload 'http://www.cmake.org/files/v3.0/cmake-3.0.2-win32-x86.zip'
   - 7z x "cmake-3.0.2-win32-x86.zip" > nul
   - SET PATH=C:\cmake\cmake-3.0.2-win32-x86\bin;C:\Ruby193\bin;%PATH%
+  - where ruby
+  - ruby --version
 
 before_build:
   - cd C:\projects\libgpkg
