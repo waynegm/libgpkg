@@ -7,7 +7,7 @@ platform: x64
 install:
   - choco install doxygen.portable
   # get a recent version of cmake
-  - choco install cmake --version 3.0.2
+  - choco install cmake
   # switch to a 64-bit ruby
   - SET PATH=C:\Ruby21-x64\bin;%PATH%
   - gem sources -r https://rubygems.org/
