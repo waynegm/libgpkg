@@ -16,6 +16,7 @@ A free GeoPackage viewer on Android, based on LuciadMobile, is available at [dem
 
 # Status
 [![Build Status](https://travis-ci.org/luciad/libgpkg.png?branch=master)](https://travis-ci.org/luciad/libgpkg)
+[![Build status](https://ci.appveyor.com/api/projects/status/u1762ibn8arpcypm?svg=true)](https://ci.appveyor.com/project/luciad/libgpkg)
 [![Coverage Status](https://coveralls.io/repos/luciad/libgpkg/badge.png?branch=master)](https://coveralls.io/r/luciad/libgpkg?branch=master)
 
 # License
@@ -23,7 +24,7 @@ libgpkg is distributed under the [Apache Software License](https://www.apache.or
 
 # Installation
 
-- Windows: download binaries from the [Downloads](libgpkg/downloads) page or compile from source.
+- Windows: download binaries from the [Downloads](https://bitbucket.org/luciad/libgpkg/downloads) page or compile from source.
 - Linux: compile from source.
 - MacOSX: install via homebrew using `brew tap homebrew/science` and then `brew install libgpkg` or compile from source.
 
@@ -49,7 +50,10 @@ Spatialite database.
 
 The auto-detect mode will attempt to derive the mode that should be used based on the contents of the sqlite database.
 If the database type cannot be determined, GeoPackage will be used.
+[Additional Usage Information](Wiki/usage.md)
 
+## Supported SQL Functions
+The [SQL function reference](Wiki/sqlref.md) page on the wiki contains an up to data list of the SQL functions that are supported by libgpkg.
 ## Standard Functions
 - ST\_MinX, ST\_MaxX, ST\_MinY, ST\_MaxY, ST\_MinZ, ST\_MaxZ, ST\_MinM, ST\_MaxM.
 - ST\_SRID
@@ -68,7 +72,6 @@ If the database type cannot be determined, GeoPackage will be used.
 - AddGeometryColumn([database_name text], table_name text, column_name text, geometry_type text, srid integer, [z integer, m integer])
 - CreateTilesTable([database_name  text], table_name text)
 - CreateSpatialIndex([database_name text], table_name text, geometry_column text, id_column text)
-
 # Compilation
 
 - Install CMake 2.8.9 or newer. CMake can be downloaded from www.cmake.org or installed using
@@ -77,7 +80,9 @@ If the database type cannot be determined, GeoPackage will be used.
 - Build the project using the generated build scripts.
 - The build scripts will generate a number of binaries
     - shell/gpkg: a modified version of the SQLite 3 command-line shell that autoloads the GeoPackage extension. This is a standalone binary that has been statically linked with SQLite 3 and the GeoPackage extension.
-    - gpkg/libgpkg.so: a dynamically loadable SQLite 3 extension that provides the GeoPackage functionality. This extension library can be used with any SQLite 3 that supports extension loading.
+    - gpkg/libgpkg.so (or gpkg.dll on Windows): a dynamically loadable SQLite 3 extension that provides the GeoPackage functionality. This extension library can be used with any SQLite 3 that supports extension loading.
+
+More [detailed compilation instructions per platform](Wiki/compile.md) can be found on the wiki.
 
 # Getting Help
 
